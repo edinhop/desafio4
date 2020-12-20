@@ -28,7 +28,7 @@ public class UserController {
 	UserRepository userRepository;
 
 	@PostMapping("/user")
-	@ApiOperation(value="Salva um usuário")
+	@ApiOperation(value="Salva um usuário.")
 	public User saveUser(@RequestBody User user) {
 		return userRepository.save(user);
 	}
