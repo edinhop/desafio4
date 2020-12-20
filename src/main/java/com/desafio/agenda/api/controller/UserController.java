@@ -26,39 +26,34 @@ public class UserController {
 	
 	@Autowired
 	UserRepository userRepository;
-	
-	@GetMapping("/users")
-	@ApiOperation(value="Retorna uma lista de usuários")
-	public List<User> userList( ) {
-		return userRepository.findAll();
-		
-	}
-	
-	@GetMapping("/user/{id}")
-	@ApiOperation(value="Retorna um unico usuário")
-	public User userId(@PathVariable(value="id")long id) {
-		return userRepository.findById(id);
-		
-	}
-	
+
 	@PostMapping("/user")
 	@ApiOperation(value="Salva um usuário")
 	public User saveUser(@RequestBody User user) {
 		return userRepository.save(user);
-		
+	}
+
+	@GetMapping("/admin/users")
+	@ApiOperation(value="Retorna uma lista de usuários")
+	public List<User> userList( ) {
+		return userRepository.findAll();
 	}
 	
-	@DeleteMapping("/user")
+	@GetMapping("/admin/user/{id}")
+	@ApiOperation(value="Retorna um unico usuário")
+	public User userId(@PathVariable(value="id")long id) {
+		return userRepository.findById(id);
+	}
+	
+	@DeleteMapping("/admin/user")
 	@ApiOperation(value="Deleta usuário")
 	public void deleteUser(@RequestBody User user) {
 		userRepository.delete(user);
-		
 	}
 	
-	@PutMapping("/user")
+	@PutMapping("/admin/user")
 	@ApiOperation(value="Atualiza um usuário")
 	public User updateUser(@RequestBody User user) {
 		return userRepository.save(user);
-		
 	}
 }
